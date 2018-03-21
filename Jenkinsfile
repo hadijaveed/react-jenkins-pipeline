@@ -16,7 +16,7 @@ node {
       echo "Build ID ${env.BUILD_NUMBER} ${gitConf.GIT_BRANCH} ${env.WORKSPACE} ${gitConf.GIT_COMMIT}"
       sh 'cat package.json'
       def packageProps = readJSON file: 'package.json'
-      echo "see version ${packageProps.version} ${env.NODEJS_HOME}"
+      echo "see version ${packageProps.version} see nodeenv ${env.NODEJS_HOME}"
     }
   }
 }
