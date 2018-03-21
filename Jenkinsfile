@@ -6,13 +6,12 @@ def withCredentialsConf = [[
   passwordVariable: 'PASSWORD'
 ]]
 
-agent {
-  docker {
-    image 'node:8-alpine'
-  }
-}
-
 node {
+  agent {
+    docker {
+      image 'node:8-alpine'
+    }
+  }
   withCredentials(withCredentialsConf) {
     echo 'Hello World'
     echo "check is docker is there ${docker}"
