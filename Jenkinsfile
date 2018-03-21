@@ -11,6 +11,7 @@ node {
   withCredentials(withCredentialsConf) {
     echo 'Hello World'
     echo "check is docker is there ${docker}"
+    echo "$env"
     stage('Test Stage') {
       echo 'testing the stage here just'
       echo "Creds test $USERNAME and password test $password" 
