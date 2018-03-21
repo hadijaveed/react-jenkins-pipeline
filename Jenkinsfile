@@ -17,7 +17,6 @@ node {
       echo 'testing the stage here just'
       echo "Creds test $USERNAME and password test $PASSWORD"
       echo "Build ID ${env.BUILD_NUMBER} ${gitConf.GIT_BRANCH} ${env.WORKSPACE} ${gitConf.GIT_COMMIT}"
-      sh 'node -v'
       sh 'cat package.json'
     }
   }
