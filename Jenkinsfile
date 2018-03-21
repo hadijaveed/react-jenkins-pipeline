@@ -1,3 +1,4 @@
+import groovy.json.JsonSlurperClassic
 
 def withCredentialsConf = [[
   $class: 'UsernamePasswordMultiBinding',
@@ -5,7 +6,6 @@ def withCredentialsConf = [[
   usernameVariable: 'USERNAME',
   passwordVariable: 'PASSWORD'
 ]]
-
 
 node {
   withCredentials(withCredentialsConf) {
@@ -18,7 +18,8 @@ node {
       echo "Creds test $USERNAME and password test $PASSWORD"
       echo "Build ID ${env.BUILD_NUMBER} ${gitConf.GIT_BRANCH} ${env.WORKSPACE} ${gitConf.GIT_COMMIT}"
       sh 'cat package.json'
-      def packageProps = readJSON file: 'package.json'
+      def packageJSON = readFile(file: 'package.json')
+      def packageProps = new JsonSlurperClassic().parseText(packageJSON)
       echo "see version ${packageProps.version}"
     }
   }
