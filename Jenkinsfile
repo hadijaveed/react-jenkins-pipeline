@@ -14,7 +14,8 @@ node {
     echo "$env"
     stage('Test Stage') {
       echo 'testing the stage here just'
-      echo "Creds test $USERNAME and password test $password" 
+      echo "Creds test $USERNAME and password test $PASSWORD"
+      echo "Build ID ${env.BUILD_NUMBER} ${env.GIT_BRANCH}"
     }
   }
 }
