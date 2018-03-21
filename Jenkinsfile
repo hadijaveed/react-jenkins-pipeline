@@ -6,7 +6,6 @@ def withCredentialsConf = [[
   passwordVariable: 'PASSWORD'
 ]]
 
-
 node {
   withCredentials(withCredentialsConf) {
     echo 'Hello World'
@@ -14,12 +13,10 @@ node {
     echo "$env"
     stage('Test Stage') {
       def gitConf = checkout scm
-      echo 'testing the stage here just'
-      echo "Creds test $USERNAME and password test $PASSWORD"
       echo "Build ID ${env.BUILD_NUMBER} ${gitConf.GIT_BRANCH} ${env.WORKSPACE} ${gitConf.GIT_COMMIT}"
       sh 'cat package.json'
       def packageProps = readJSON file: 'package.json'
-      echo "see version ${packageProps.version}"
+      echo "see version ${packageProps.version} ${env.NODEJS_HOME}"
     }
   }
 }
